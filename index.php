@@ -77,7 +77,7 @@
           <div class="overlay-left">
             <h1>Welcome Back!</h1>
             <p>
-              To keep connected with us, please log in with your personal info
+            Untuk tetap terhubung dengan kami, silakan masuk menggunakan informasi pribadi Anda.
             </p>
             <button id="signIn">Sign In</button>
           </div>
