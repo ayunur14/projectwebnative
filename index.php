@@ -60,7 +60,7 @@
         <div class="overlay-right">
           <h1>Hello, Friend!</h1>
           <p>Enter your details and start your journey with us</p>
-          <button id="signUp">Daftar</button>
+          <button id="signUp">Daftar Akun</button>
         </div>
       </div>
     </div>
