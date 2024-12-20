@@ -10,6 +10,9 @@
   <!-- CSS stylesheet -->
   <link rel="stylesheet" href="style_login2.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -99,25 +102,56 @@ if (isset($_POST['register'])) {
   // Cek apakah password dan konfirmasi password sama
   if ($passwordreg == $repasswordreg) {
     $hashed_password = md5($passwordreg); // Hash password sebelum disimpan
-    $query = "INSERT INTO account (id_account, email, password, akses) VALUES (NULL, '$email', '$hashed_password', '2')";
+    $query = "INSERT INTO accountt (id_account, email, password, akses) VALUES (NULL, '$email', '$hashed_password', '2')";
 
     // Eksekusi query
     if (mysqli_query($conn, $query)) {
-      echo "<script>
-                    alert('Pendaftaran Berhasil!');
-                    window.location.href = 'index.php';
-                  </script>";
+      // echo "<script>
+      //               alert('Pendaftaran Berhasil!');
+      //               window.location.href = 'index.php';
+      //             </script>";
+
+        echo "<script>
+          Swal.fire({
+            title: 'Pendaftaran Berhasil',
+            text: 'Selamat Akun Anda Telah Terdaftar',
+            icon: 'success'
+          }).then(() => {
+            window.location.href = 'index.php';
+          });
+        </script>";
+
     } else {
+      // echo "<script>
+      //               alert('Pendaftaran gagal..!');
+      //               window.location.href = 'index.php';
+      //             </script>";
       echo "<script>
-                    alert('Pendaftaran gagal..!');
-                    window.location.href = 'index.php';
-                  </script>";
+          Swal.fire({
+            title: 'Pendaftaran Gagal',
+            text: 'Akun anda Gagal terdaftar',
+            icon: 'error'
+          }).then(() => {
+            window.location.href = 'index.php';
+          });
+        </script>";
     }
   } else {
+    // echo "<script>
+    //             alert('Password tidak sama...!');
+    //             window.location.href = 'index.php';
+    //           </script>";
+
+
     echo "<script>
-                alert('Password tidak sama...!');
-                window.location.href = 'index.php';
-              </script>";
+          Swal.fire({
+            title: 'Password anda tidak sama',
+            text: 'Silahkan Ulangi Password anda',
+            icon: 'error'
+          }).then(() => {
+            window.location.href = 'index.php';
+          });
+        </script>";
   }
 }
 
@@ -127,7 +161,7 @@ if (isset($_POST['login'])) {
   $password = md5($_POST['password']); // Enkripsi password
 
   // Query untuk memeriksa kredensial
-  $query2 = mysqli_query($conn, "SELECT * FROM account WHERE email = '$email' AND password = '$password'");
+  $query2 = mysqli_query($conn, "SELECT * FROM accountt WHERE email = '$email' AND password = '$password'");
 
   if (mysqli_num_rows($query2) != 0) {
     // Mendapatkan data pengguna
@@ -140,22 +174,56 @@ if (isset($_POST['login'])) {
 
     // Redirect berdasarkan akses pengguna
     if ($row['akses'] == 1) {
+      // echo "<script>
+      //               alert('Login berhasil!');
+      //               window.location.href = 'dashboard.php';
+      //             </script>";
       echo "<script>
-                    alert('Login berhasil!');
-                    window.location.href = 'dashboard.php';
-                  </script>";
+          Swal.fire({
+            title: 'Login Anda Berhasil Admin',
+            text: 'Selamat Akun Berhasil Login',
+            icon: 'success'
+          }).then(() => {
+            window.location.href = 'index.php';
+          });
+        </script>";
+
+        
+        
     } else if ($row['akses'] == 2) {
+      // echo "<script>
+      //               alert('Login berhasil ke User!');
+      //               window.location.href = 'user.php';
+      //             </script>";
       echo "<script>
-                    alert('Login berhasil ke User!');
-                    window.location.href = 'user.php';
-                  </script>";
+          Swal.fire({
+            title: 'Login Anda Berhasil ke User',
+            text: 'Selamat Akun Berhasil Login User',
+            icon: 'success'
+          }).then(() => {
+            window.location.href = 'index.php';
+          });
+        </script>";
+
+
     }
   } else {
     // Login gagal
+    // echo "<script>
+    //             alert('Login Gagal!');
+    //             window.location.href = 'index.php';
+    //           </script>";
     echo "<script>
-                alert('Login Gagal!');
-                window.location.href = 'index.php';
-              </script>";
+          Swal.fire({
+            title: 'Login Gagal',
+            text: 'Login Anda Belum Berhasil',
+            icon: 'error'
+          }).then(() => {
+            window.location.href = 'index.php';
+          });
+        </script>";
+
+
   }
 }
 ?>

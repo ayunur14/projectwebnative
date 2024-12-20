@@ -22,7 +22,7 @@
             </a>
           </li>
           <li>
-            <a href="dashboard.html">
+            <a href="dashboard.php">
               <span class="icon"
                 ><ion-icon name="home-outline"></ion-icon
               ></span>
@@ -30,7 +30,7 @@
             </a>
           </li>
           <li>
-            <a href="form_2.html">
+            <a href="form_2.php">
               <span class="icon"
                 ><ion-icon name="people-outline"></ion-icon
               ></span>
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li>
-            <a href="Table.html">
+            <a href="Table.php">
               <span class="icon"
                 ><ion-icon name="browsers-outline"></ion-icon
               ></span>
